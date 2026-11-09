@@ -1,0 +1,14 @@
+[Unit]
+Description=32 Demo Drive house dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=%h/house
+ExecStart=%h/.local/share/house/venv/bin/python %h/house/server/house.py
+Environment=PYTHONUNBUFFERED=1
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

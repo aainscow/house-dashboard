@@ -1,0 +1,20 @@
+# Seed config for Home Assistant on the Pi (copied to ~/ha/config only if none exists).
+default_config:
+
+homeassistant:
+  name: 32 Demo Drive
+  time_zone: Europe/London
+  country: GB
+  currency: GBP
+  unit_system: metric
+  latitude: 51.40      # southern England
+  longitude: -1.00
+  elevation: 60
+
+# The Pi boots from an SD card: keep the database small and write less often.
+recorder:
+  purge_keep_days: 7
+  commit_interval: 30
+
+logger:
+  default: warning

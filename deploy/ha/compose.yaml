@@ -1,0 +1,26 @@
+# Home Assistant (energy engine) + Predbat (battery planner). Lives in ~/ha on the Pi.
+#   docker compose up -d                      → Home Assistant only
+#   docker compose --profile predbat up -d    → also Predbat (once the Fox battery exists)
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    network_mode: host          # UI on :8123; needed for local discovery (Tuya, Cast, mDNS)
+    privileged: true
+    restart: unless-stopped
+    stop_grace_period: 60s
+    environment: { TZ: Europe/London }
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+
+  predbat:
+    image: nipar44/predbat_addon:v9.6.5
+    container_name: predbat
+    profiles: ["predbat"]
+    network_mode: host          # talks to HA on 127.0.0.1:8123; web UI on :5052
+    restart: unless-stopped
+    volumes:
+      - ./predbat:/config:rw
+      - /etc/localtime:/etc/localtime:ro

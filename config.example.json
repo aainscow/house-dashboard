@@ -1,0 +1,59 @@
+{
+  "listen": {
+    "host": "0.0.0.0",
+    "port": 8080
+  },
+  "hubitat": {
+    "host": "192.168.1.20",
+    "appId": "",
+    "token": ""
+  },
+  "wiser": {
+    "host": "",
+    "secret": ""
+  },
+  "fox": {
+    "apiKey": "",
+    "sn": ""
+  },
+  "octopus": {
+    "apiKey": "",
+    "account": "",
+    "gasUnits": "m3"
+  },
+  "optimiser": {
+    "immersion": {
+      "mode": "advise",
+      "bothAllowed": false,
+      "elements": [
+        {
+          "name": "Element 1",
+          "entity": null,
+          "powerEntity": null
+        },
+        {
+          "name": "Element 2",
+          "entity": null,
+          "powerEntity": null
+        }
+      ]
+    }
+  },
+  "aircon": {
+    "host": "",
+    "entity": "loft_ac"
+  },
+  "blinds": {
+    "hubitat": {
+      "blind-dormer": null,
+      "blind-roof-l": null,
+      "blind-roof-r": null,
+      "blind-stairs-roof": null,
+      "blind-ensuite-roof": null
+    }
+  },
+  "duckdns": {
+    "domain": "demo-house",
+    "token": ""
+  }
+}

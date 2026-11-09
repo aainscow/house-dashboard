@@ -1,0 +1,15 @@
+[Unit]
+Description=32 Demo Drive house dashboard (DEMO — simulated, touches nothing real)
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/house
+ExecStart=%h/.local/share/house/venv/bin/python %h/house/server/house.py
+Environment=PYTHONUNBUFFERED=1
+Environment=HOUSE_DEMO=1
+Environment=PORT=8081
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

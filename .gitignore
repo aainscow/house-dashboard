@@ -1,0 +1,15 @@
+config.json
+__pycache__/
+*.pyc
+.DS_Store
+.claude/settings.local.json
+# Android build output and local settings (the signing key lives in ~/.config/demo-drive)
+android/local.properties
+android/.gradle/
+android/build/
+android/app/build/
+web/downloads/
+# the demo site built by pages/build.sh
+_site/
+_preview/
+_public/

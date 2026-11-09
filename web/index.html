@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1014">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>32 Demo Drive</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="house3d.css">
+</head>
+<body>
+  <div class="demo-ribbon" id="demo-ribbon" hidden>Demo mode — simulated house. Nothing you do here touches real devices. <a id="real-link" href="http://raspberrypi.local:8080/">Open the real dashboard →</a></div>
+  <header class="top">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 15 16 5l12 10v12a1 1 0 0 1-1 1h-7v-8h-8v8H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+      <div>
+        <h1>32 Demo Drive</h1>
+        <p id="greeting">Good day</p>
+      </div>
+    </div>
+    <div class="top-stats">
+      <div class="stat"><span class="stat-k">Outside</span><span class="stat-v" id="t-outside">–</span></div>
+      <div class="stat"><span class="stat-k">Solar</span><span class="stat-v solar" id="t-solar">–</span></div>
+      <div class="stat"><span class="stat-k">Battery</span><span class="stat-v battery" id="t-soc">–</span></div>
+      <div class="stat"><span class="stat-k">Lights on</span><span class="stat-v light" id="t-lights">–</span></div>
+    </div>
+    <button class="app-gear" id="app-gear" hidden title="App settings" aria-label="App settings">⚙</button>
+    <div class="clock">
+      <div id="clock-time">--:--</div>
+      <div id="clock-date"></div>
+    </div>
+  </header>
+
+  <nav class="scenes" id="scenes" aria-label="Scenes"></nav>
+
+  <main class="grid">
+    <section class="card plan-card" aria-label="Floor plan">
+      <div class="card-head">
+        <h2>House</h2>
+        <div class="head-ctl">
+          <div class="seg" id="floor-tabs" role="tablist"></div>
+          <div class="seg small" id="view-tog" aria-label="View"></div>
+        </div>
+      </div>
+      <div class="plan-wrap">
+        <svg id="plan" class="plan" preserveAspectRatio="xMidYMid meet" style="display:none"></svg>
+        <div id="h3d" class="h3d"></div>
+        <div class="plan-legend" style="display:none">
+          <span><i class="dot lit"></i>Lights on</span>
+          <span><i class="dot heat"></i>Calling for heat</span>
+          <span><i class="dot sim"></i>Not yet installed</span>
+        </div>
+      </div>
+      <div class="floor-lights" id="floor-lights"></div>
+    </section>
+
+    <section class="card energy-card" aria-label="Energy">
+      <div class="card-head">
+        <h2>Energy</h2>
+        <span class="badge" id="fox-badge">Fox ESS</span>
+      </div>
+      <svg id="flow" class="flow" viewBox="0 0 360 250"></svg>
+      <div class="kpis">
+        <div><span>Generated today</span><b id="k-gen">–</b></div>
+        <div><span>Imported</span><b id="k-imp">–</b></div>
+        <div><span>Exported</span><b id="k-exp">–</b></div>
+        <div><span>Mode</span><b id="k-mode">–</b></div>
+      </div>
+      <svg id="history" class="history" viewBox="0 0 360 120" preserveAspectRatio="none"></svg>
+      <div class="history-legend"><span class="sw solar"></span>Solar <span class="sw load"></span>House <span class="sw soc"></span>Battery %</div>
+    </section>
+
+    <section class="card loft-card" aria-label="Loft climate">
+      <div class="card-head">
+        <h2>Loft · Master Bedroom</h2>
+        <span class="badge" id="ac-badge">Panasonic</span>
+      </div>
+      <div class="ac">
+        <div class="dial-wrap">
+          <svg id="dial" class="dial" viewBox="0 0 200 200"></svg>
+          <div class="dial-center">
+            <div class="dial-set" id="ac-set">21.0°</div>
+            <div class="dial-now" id="ac-now">Room 20.1°</div>
+            <button class="power" id="ac-power" aria-label="Aircon power">
+              <svg viewBox="0 0 24 24"><path d="M12 3v8M6.3 6.3a8 8 0 1 0 11.4 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <button class="step minus" id="ac-minus" aria-label="Lower">−</button>
+          <button class="step plus" id="ac-plus" aria-label="Raise">+</button>
+        </div>
+        <div class="seg modes" id="ac-modes"></div>
+        <div class="ac-row">
+          <label>Fan</label>
+          <div class="seg small" id="ac-fan"></div>
+        </div>
+        <div class="ac-hint" id="ac-hint"></div>
+      </div>
+      <div class="blinds">
+        <div class="blinds-head">
+          <h3>Loft solar blinds</h3>
+          <div class="btns">
+            <button class="chip" data-blinds="0">Open all</button>
+            <button class="chip" data-blinds="100">Close all</button>
+          </div>
+        </div>
+        <div id="blind-list"></div>
+      </div>
+    </section>
+
+    <section class="card heat-card" aria-label="Heating">
+      <div class="card-head">
+        <h2>Heating</h2>
+        <span class="badge" id="wiser-badge">Drayton Wiser</span>
+      </div>
+      <div class="hw" id="hw"></div>
+      <div class="zones" id="zones"></div>
+    </section>
+
+    <section class="card octo-card" aria-label="Octopus Energy">
+      <div class="card-head">
+        <h2>Grid &amp; gas</h2>
+        <span class="badge" id="octo-badge">Octopus Energy</span>
+      </div>
+      <div class="octo-now">
+        <div class="octo-demand"><span id="o-dir">Importing</span><b id="o-demand">–</b><small id="o-mini"></small></div>
+        <div class="octo-rate" id="o-rate-chip"><span>Now</span><b id="o-rate">–</b><small id="o-next"></small></div>
+      </div>
+      <div class="octo-tiles">
+        <div class="tile elec"><span>Electricity today</span><b id="o-ekwh">–</b><small id="o-ecost"></small></div>
+        <div class="tile gas"><span>Gas today</span><b id="o-gkwh">–</b><small id="o-gcost"></small></div>
+      </div>
+      <svg id="o-rates" class="o-rates" viewBox="0 0 360 90" preserveAspectRatio="none"></svg>
+      <div class="o-foot" id="o-foot"></div>
+    </section>
+
+    <section class="card opt-card" aria-label="Cost optimiser">
+      <div class="card-head">
+        <h2>Cost optimiser</h2>
+        <span class="badge live" id="opt-saved">Saved today £0.00</span>
+      </div>
+      <div class="opt-period" id="opt-period"></div>
+      <div id="opt-rules"></div>
+      <details class="opt-log"><summary>Recent decisions</summary><ol id="opt-log"></ol></details>
+    </section>
+
+    <section class="card car-card" id="car-card" aria-label="Tesla">
+      <div class="card-head">
+        <h2>Tesla</h2>
+        <span class="badge" id="car-badge">Intelligent Octopus</span>
+      </div>
+      <div class="car-now">
+        <div class="car-soc"><b id="car-soc">–</b><span id="car-state"></span></div>
+        <div class="car-bar" title="Charge level, with the charge target marked"><i id="car-fill"></i><em id="car-mark"></em></div>
+        <div class="car-sub" id="car-sub"></div>
+      </div>
+      <div class="car-ctl">
+        <div class="dl"><div class="nm">Charge now<small>Bump charge, whatever the price</small></div><button class="toggle" id="car-bump" aria-label="Charge now"></button></div>
+        <div class="dl"><div class="nm">Charge to</div><div class="stepper"><button id="car-tminus" aria-label="Lower target">−</button><b id="car-target">–</b><button id="car-tplus" aria-label="Raise target">+</button></div></div>
+        <div class="dl"><div class="nm">Ready by</div><select id="car-ready" aria-label="Ready by"></select></div>
+        <div class="dl"><div class="nm">Smart charging<small>Octopus picks the cheapest slots</small></div><button class="toggle" id="car-smart" aria-label="Smart charging"></button></div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-inner">
+      <button class="close" id="drawer-close" aria-label="Close">×</button>
+      <div id="drawer-body"></div>
+    </div>
+  </aside>
+
+  <footer class="foot">
+    <div id="integrations"></div>
+    <a class="get-app" id="get-app" href="/downloads/demo-drive.apk" hidden>Get the Android app</a>
+    <div class="muted">3D model measured from the architect's plans</div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="house3d.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
