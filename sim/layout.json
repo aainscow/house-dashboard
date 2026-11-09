@@ -1,0 +1,812 @@
+{
+ "_comment": "Room geometry traced from the architect's proposed plans. Coordinates are in each floor's own viewBox units. 'hubitat' ids refer to existing devices on the C-8 (192.168.1.20); null = not yet installed (simulated). 'assumed' marks guesses to confirm.",
+ "floors": [
+  {
+   "id": "ground",
+   "name": "Ground floor",
+   "viewBox": "0 0 940 830",
+   "rooms": [
+    {
+     "id": "study",
+     "name": "Study",
+     "area": 9,
+     "shape": [
+      [
+       30,
+       385
+      ],
+      [
+       270,
+       385
+      ],
+      [
+       270,
+       640
+      ],
+      [
+       30,
+       640
+      ]
+     ],
+     "lights": [
+      {
+       "id": "study-ceiling",
+       "name": "Ceiling",
+       "dimmable": true,
+       "hubitat": null
+      }
+     ],
+     "sensors": {
+      "temperature": {
+       "hubitat": 71
+      }
+     },
+     "heating": {
+      "wiser": "Study",
+      "trv": 71
+     }
+    },
+    {
+     "id": "lounge",
+     "name": "Sitting room",
+     "area": 16,
+     "shape": [
+      [
+       277,
+       385
+      ],
+      [
+       700,
+       385
+      ],
+      [
+       700,
+       650
+      ],
+      [
+       277,
+       650
+      ]
+     ],
+     "lights": [
+      {
+       "id": "lounge-main",
+       "name": "Sitting room",
+       "dimmable": true,
+       "hubitat": 85
+      },
+      {
+       "id": "lounge-corner",
+       "name": "Corner lights",
+       "dimmable": false,
+       "hubitat": 82
+      },
+      {
+       "id": "lounge-sofa",
+       "name": "Back sofa light",
+       "dimmable": false,
+       "hubitat": 83
+      },
+      {
+       "id": "lounge-dining",
+       "name": "Dining pendant",
+       "dimmable": true,
+       "hubitat": null
+      }
+     ],
+     "heating": {
+      "wiser": "Lounge"
+     }
+    },
+    {
+     "id": "conservatory",
+     "name": "Conservatory",
+     "area": 14,
+     "shape": [
+      [
+       605,
+       40
+      ],
+      [
+       905,
+       40
+      ],
+      [
+       905,
+       370
+      ],
+      [
+       605,
+       370
+      ]
+     ],
+     "lights": [
+      {
+       "id": "cons-main",
+       "name": "Conservatory",
+       "dimmable": true,
+       "hubitat": 33
+      }
+     ],
+     "sensors": {
+      "humidity": {
+       "hubitat": 38
+      }
+     },
+     "heating": {
+      "wiser": "Conservatory"
+     }
+    },
+    {
+     "id": "kitchen",
+     "name": "Kitchen",
+     "area": 15,
+     "shape": [
+      [
+       370,
+       650
+      ],
+      [
+       810,
+       650
+      ],
+      [
+       810,
+       805
+      ],
+      [
+       370,
+       805
+      ]
+     ],
+     "lights": [
+      {
+       "id": "kitchen-main",
+       "name": "Downlights",
+       "dimmable": true,
+       "hubitat": null
+      },
+      {
+       "id": "kitchen-under",
+       "name": "Under-cabinet",
+       "dimmable": false,
+       "hubitat": null
+      }
+     ],
+     "heating": {
+      "wiser": "Kitchen"
+     }
+    },
+    {
+     "id": "utility",
+     "name": "Utility room",
+     "area": 5,
+     "shape": [
+      [
+       700,
+       385
+      ],
+      [
+       890,
+       385
+      ],
+      [
+       890,
+       650
+      ],
+      [
+       700,
+       650
+      ]
+     ],
+     "lights": [
+      {
+       "id": "utility-light",
+       "name": "Light",
+       "dimmable": false,
+       "hubitat": null
+      }
+     ],
+     "devices": [
+      {
+       "id": "utility-outlet",
+       "name": "Utility room outlet",
+       "hubitat": 37
+      }
+     ]
+    },
+    {
+     "id": "wc",
+     "name": "WC",
+     "area": 1,
+     "shape": [
+      [
+       810,
+       655
+      ],
+      [
+       890,
+       655
+      ],
+      [
+       890,
+       765
+      ],
+      [
+       810,
+       765
+      ]
+     ],
+     "lights": [
+      {
+       "id": "wc-light",
+       "name": "Light",
+       "dimmable": false,
+       "hubitat": null
+      }
+     ]
+    },
+    {
+     "id": "hallway",
+     "name": "Hallway",
+     "area": 8,
+     "stairs": [
+      [
+       100,
+       720
+      ],
+      [
+       270,
+       800
+      ]
+     ],
+     "shape": [
+      [
+       30,
+       650
+      ],
+      [
+       370,
+       650
+      ],
+      [
+       370,
+       805
+      ],
+      [
+       30,
+       805
+      ]
+     ],
+     "lights": [
+      {
+       "id": "hall-main",
+       "name": "Hall",
+       "dimmable": true,
+       "hubitat": null
+      },
+      {
+       "id": "stairs-ground",
+       "name": "Stairs (ground→first)",
+       "dimmable": true,
+       "hubitat": null,
+       "stairs": true
+      }
+     ],
+     "heating": {
+      "wiser": "Hallway"
+     }
+    }
+   ]
+  },
+  {
+   "id": "first",
+   "name": "First floor",
+   "viewBox": "60 0 960 830",
+   "rooms": [
+    {
+     "id": "bed2",
+     "name": "Guest Bedroom",
+     "area": 9,
+     "shape": [
+      [
+       85,
+       385
+      ],
+      [
+       325,
+       385
+      ],
+      [
+       325,
+       600
+      ],
+      [
+       85,
+       600
+      ]
+     ],
+     "lights": [
+      {
+       "id": "bed2-main",
+       "name": "Main light",
+       "dimmable": true,
+       "hubitat": null
+      }
+     ],
+     "heating": {
+      "wiser": "Guest Bedroom"
+     }
+    },
+    {
+     "id": "bed3",
+     "name": "Bedroom 3",
+     "area": 7,
+     "shape": [
+      [
+       332,
+       385
+      ],
+      [
+       493,
+       385
+      ],
+      [
+       493,
+       655
+      ],
+      [
+       332,
+       655
+      ]
+     ],
+     "lights": [
+      {
+       "id": "bed3-main",
+       "name": "Main light",
+       "dimmable": true,
+       "hubitat": null
+      }
+     ],
+     "heating": {
+      "wiser": "Bedroom 3"
+     }
+    },
+    {
+     "id": "bed4",
+     "name": "Bedroom 4",
+     "area": 8,
+     "shape": [
+      [
+       500,
+       385
+      ],
+      [
+       745,
+       385
+      ],
+      [
+       745,
+       655
+      ],
+      [
+       500,
+       655
+      ]
+     ],
+     "lights": [
+      {
+       "id": "bed4-main",
+       "name": "Main light",
+       "dimmable": true,
+       "hubitat": 81
+      },
+      {
+       "id": "bed4-led",
+       "name": "LED strip",
+       "dimmable": true,
+       "hubitat": 80,
+       "assumed": true
+      }
+     ],
+     "heating": {
+      "wiser": "Bedroom 4"
+     }
+    },
+    {
+     "id": "landing",
+     "name": "Landing",
+     "area": 6,
+     "stairs": [
+      [
+       235,
+       730
+      ],
+      [
+       330,
+       800
+      ]
+     ],
+     "shape": [
+      [
+       85,
+       605
+      ],
+      [
+       575,
+       605
+      ],
+      [
+       575,
+       725
+      ],
+      [
+       480,
+       725
+      ],
+      [
+       480,
+       805
+      ],
+      [
+       85,
+       805
+      ]
+     ],
+     "lights": [
+      {
+       "id": "landing-main",
+       "name": "Landing",
+       "dimmable": true,
+       "hubitat": null
+      },
+      {
+       "id": "stairs-loft",
+       "name": "Stairs (first→loft)",
+       "dimmable": true,
+       "hubitat": null,
+       "stairs": true
+      }
+     ],
+     "sensors": {
+      "humidity": {
+       "hubitat": 88
+      },
+      "temperature": {
+       "hubitat": 88
+      }
+     },
+     "devices": [
+      {
+       "id": "dehumidifier",
+       "name": "Dehumidifier",
+       "hubitat": 70
+      }
+     ]
+    },
+    {
+     "id": "bathroom",
+     "name": "Bathroom",
+     "area": 4,
+     "shape": [
+      [
+       540,
+       660
+      ],
+      [
+       745,
+       660
+      ],
+      [
+       745,
+       805
+      ],
+      [
+       540,
+       805
+      ]
+     ],
+     "lights": [
+      {
+       "id": "bath-main",
+       "name": "Downlights",
+       "dimmable": false,
+       "hubitat": null
+      },
+      {
+       "id": "bath-mirror",
+       "name": "Mirror",
+       "dimmable": false,
+       "hubitat": null
+      }
+     ],
+     "heating": {
+      "wiser": "Bathroom"
+     },
+     "windows": [
+      {
+       "id": "win-bathroom",
+       "rect": [
+        733,
+        707,
+        22,
+        45
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "loft",
+   "name": "Loft",
+   "viewBox": "20 215 720 500",
+   "rooms": [
+    {
+     "id": "loft-stairs",
+     "name": "Loft landing",
+     "area": 3,
+     "stairs": [
+      [
+       40,
+       385
+      ],
+      [
+       130,
+       595
+      ]
+     ],
+     "shape": [
+      [
+       35,
+       255
+      ],
+      [
+       140,
+       255
+      ],
+      [
+       140,
+       600
+      ],
+      [
+       35,
+       600
+      ]
+     ],
+     "lights": [
+      {
+       "id": "loft-stairs-light",
+       "name": "Stair light",
+       "dimmable": true,
+       "hubitat": null,
+       "stairs": true
+      }
+     ],
+     "blinds": [
+      "blind-stairs-roof"
+     ],
+     "windows": [
+      {
+       "id": "blind-stairs-roof",
+       "rect": [
+        55,
+        500,
+        47,
+        57
+       ]
+      }
+     ]
+    },
+    {
+     "id": "bed1",
+     "name": "Master Bedroom",
+     "area": 18.6,
+     "primary": true,
+     "shape": [
+      [
+       140,
+       255
+      ],
+      [
+       530,
+       255
+      ],
+      [
+       530,
+       600
+      ],
+      [
+       140,
+       600
+      ]
+     ],
+     "lights": [
+      {
+       "id": "bed1-main",
+       "name": "Downlights",
+       "dimmable": true,
+       "hubitat": null
+      },
+      {
+       "id": "bed1-left",
+       "name": "Bedside left",
+       "dimmable": true,
+       "hubitat": null
+      },
+      {
+       "id": "bed1-right",
+       "name": "Bedside right",
+       "dimmable": true,
+       "hubitat": null
+      }
+     ],
+     "aircon": true,
+     "blinds": [
+      "blind-dormer",
+      "blind-roof-l",
+      "blind-roof-r"
+     ],
+     "windows": [
+      {
+       "id": "blind-dormer",
+       "rect": [
+        230,
+        238,
+        235,
+        14
+       ]
+      },
+      {
+       "id": "blind-roof-l",
+       "rect": [
+        160,
+        500,
+        90,
+        60
+       ]
+      },
+      {
+       "id": "blind-roof-r",
+       "rect": [
+        408,
+        500,
+        90,
+        60
+       ]
+      }
+     ],
+     "heating": {
+      "wiser": "Master Bedroom",
+      "radiator": true
+     }
+    },
+    {
+     "id": "ensuite1",
+     "name": "Ensuite",
+     "area": 5.9,
+     "shape": [
+      [
+       535,
+       255
+      ],
+      [
+       690,
+       255
+      ],
+      [
+       690,
+       560
+      ],
+      [
+       535,
+       560
+      ]
+     ],
+     "lights": [
+      {
+       "id": "ensuite-main",
+       "name": "Ensuite light",
+       "dimmable": false,
+       "hubitat": 65
+      },
+      {
+       "id": "ensuite-fan",
+       "name": "Extract / mirror",
+       "dimmable": false,
+       "hubitat": 65,
+       "endpoint": 2,
+       "assumed": true
+      }
+     ],
+     "sensors": {
+      "humidity": {
+       "hubitat": 66
+      },
+      "temperature": {
+       "hubitat": 66
+      },
+      "motion": {
+       "hubitat": 66
+      }
+     },
+     "heating": {
+      "wiser": "Ensuite"
+     },
+     "blinds": [
+      "blind-ensuite-roof"
+     ],
+     "windows": [
+      {
+       "id": "blind-ensuite-roof",
+       "rect": [
+        567,
+        495,
+        70,
+        60
+       ]
+      }
+     ]
+    },
+    {
+     "id": "storage",
+     "name": "Eaves storage",
+     "area": 3,
+     "shape": [
+      [
+       145,
+       605
+      ],
+      [
+       460,
+       605
+      ],
+      [
+       460,
+       695
+      ],
+      [
+       145,
+       695
+      ]
+     ],
+     "lights": []
+    },
+    {
+     "id": "tank",
+     "name": "Water tank",
+     "area": 2,
+     "hotwater": true,
+     "shape": [
+      [
+       460,
+       605
+      ],
+      [
+       700,
+       605
+      ],
+      [
+       700,
+       695
+      ],
+      [
+       460,
+       695
+      ]
+     ],
+     "lights": [],
+     "sensors": {
+      "temperature": {
+       "hubitat": 91
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "hotwater": {
+  "sensor": 91,
+  "boostSwitch": 94
+ }
+}

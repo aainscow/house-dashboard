@@ -1,0 +1,9 @@
+{
+  "name": "32 Demo Drive",
+  "short_name": "House",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0d1014",
+  "theme_color": "#0d1014",
+  "icons": [{"src": "icon.svg", "sizes": "any", "type": "image/svg+xml"}]
+}
